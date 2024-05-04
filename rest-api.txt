@@ -1,0 +1,67 @@
+function convertExcelToAPI(filterParam1, filterValue1,filterParam2, filterValue2,filterParam3, filterValue3,filterParam4, filterValue4,filterParam5, filterValue5,filterParam6, filterValue6,filterParam7, filterValue7,filterParam8, filterValue8,filterParam9, filterValue9) {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var data = sheet.getDataRange().getValues();
+
+  // Assuming data in the Excel sheet is arranged in rows and columns,
+  // convert it to a JSON array of objects.
+  var jsonData = [];
+  var headers = data[0];
+
+  for (var i = 1; i < data.length; i++) {
+    var row = data[i];
+    var obj = {};
+
+    for (var j = 0; j < headers.length; j++) {
+      obj[headers[j]] = row[j];
+    }
+
+    // Filter the data based on provided parameters (if any).
+    if (
+      (!filterParam1 || obj[filterParam1] === filterValue1)&&
+      (!filterParam2 || obj[filterParam2] === filterValue2)&&
+      (!filterParam3 || obj[filterParam3] === filterValue3)&&
+      (!filterParam4 || obj[filterParam4] === filterValue4)&&
+      (!filterParam5 || obj[filterParam5] === filterValue5)&&
+      (!filterParam6 || obj[filterParam6] === filterValue6)&&
+      (!filterParam7 || obj[filterParam7] === filterValue7)&&
+      (!filterParam8 || obj[filterParam8] === filterValue8)&&
+      (!filterParam9 || obj[filterParam9] === filterValue9)
+    ) {
+      jsonData.push(obj);
+    }
+  }
+
+  // Convert JSON data to a JSON string and return it as the API response.
+  var apiResponse = JSON.stringify(jsonData);
+  return apiResponse;
+}
+
+function doGet(e) {
+  // Extract filter parameters from URL query parameters.
+  var filterParam1 = e.parameter.filterParam1;
+  var filterValue1 = e.parameter.filterValue1;
+  var filterParam2 = e.parameter.filterParam2;
+  var filterValue2 = e.parameter.filterValue2;
+  var filterParam3 = e.parameter.filterParam3;
+  var filterValue3 = e.parameter.filterValue3;
+
+  var filterParam4 = e.parameter.filterParam4;
+  var filterValue4 = e.parameter.filterValue4;
+  var filterParam5 = e.parameter.filterParam5;
+  var filterValue5 = e.parameter.filterValue5;
+  var filterParam6 = e.parameter.filterParam6;
+  var filterValue6 = e.parameter.filterValue6;
+
+  var filterParam7 = e.parameter.filterParam7;
+  var filterValue7 = e.parameter.filterValue7;
+  var filterParam8 = e.parameter.filterParam8;
+  var filterValue8 = e.parameter.filterValue8;
+  var filterParam9 = e.parameter.filterParam9;
+  var filterValue9 = e.parameter.filterValue9;
+
+  // Call the conversion function with the provided filtering parameters.
+  var apiResponse = convertExcelToAPI(filterParam1, filterValue1,filterParam2, filterValue2,filterParam3, filterValue3,filterParam4, filterValue4,filterParam5, filterValue5,filterParam6, filterValue6,filterParam7, filterValue7,filterParam8, filterValue8,filterParam9, filterValue9);
+
+  // Set the appropriate content type for the API response.
+  return ContentService.createTextOutput(apiResponse).setMimeType(ContentService.MimeType.JSON);
+}
