@@ -1,5 +1,7 @@
+// AKfycbxNtuloXtOhGuFU1fHj6o24AJXIr_TbY9VEy1a3_jPaK-FkNeUnGsp--0hiX6O3uw4
+
 /* ------------------------------------------------------------------------
- * Created by: Sagar Shirgaonkar (21ECE1031) and Kalyan Sharma (21ECE1013)
+ * Created by: Sagar Shirgaonkar (21ECE1031) and Paras Kore (21ECE1024)
  * ------------------------------------------------------------------------*/
  
 #include <Arduino.h>
@@ -13,12 +15,12 @@
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 //---------------------------------------------------------------------------------------------------------
 // Enter Google Script Deployment ID:
-const char *GScriptId = "AKfycbwL-FO9j6T2vKtjK8EbbenRkzXNatEX8OJbG5kykty1TajDRL7Ah_dOoH0QDm02ToBI";
+const char *GScriptId = "AKfycbxNtuloXtOhGuFU1fHj6o24AJXIr_TbY9VEy1a3_jPaK-FkNeUnGsp--0hiX6O3uw4";
 String gate_number = "Gate1";
 //---------------------------------------------------------------------------------------------------------
 // Enter network credentials:
-const char* ssid     = "Sagar";
-const char* password = "12345679";
+const char* ssid     = "FRIDAY";
+const char* password = "12345678";
 //---------------------------------------------------------------------------------------------------------
 // Enter command (insert_row or append_row) and your Google Sheets sheet name (default is Sheet1):
 String payload_base =  "{\"command\": \"insert_row\", \"sheet_name\": \"Sheet1\", \"values\": ";
